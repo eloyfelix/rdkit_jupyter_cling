@@ -1,0 +1,15 @@
+version: '3'
+services:
+  cling_rdkit:
+    build: .
+    networks:
+      - rdclingnet
+    ports:
+      - "9999:9999"
+    volumes:
+      - "./notebooks:/notebooks"
+      - "./config:/config"
+
+networks:
+  rdclingnet:
+    driver: "bridge"
