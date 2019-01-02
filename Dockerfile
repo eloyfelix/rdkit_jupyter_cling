@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 
 # install required ubuntu packages
 RUN apt-get update --fix-missing
-RUN apt-get install -y libxrender1 libxext6 wget git build-essential cmake libeigen3-dev libboost-all-dev
+RUN apt-get install -y libxrender1 libxext6 wget git libeigen3-dev
 
 # install miniconda
 RUN wget --quiet https://repo.continuum.io/miniconda/Miniconda3-4.5.4-Linux-x86_64.sh -O ~/miniconda.sh && \
@@ -15,7 +15,7 @@ ENV PATH /opt/conda/bin:$PATH
 # use the environment.yml to create the conda env
 COPY config/environment.yml /tmp/environment.yml
 
-# create the conda env
+# create the conda env using saved environment file
 RUN conda env create -n cling -f /tmp/environment.yml
 
 # activate env (add conda env bin to path)
