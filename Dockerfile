@@ -35,5 +35,8 @@ RUN cmake -DRDK_BUILD_INCHI_SUPPORT=ON ..
 # make and make install
 RUN make && make install
 
+# use the notebook
+COPY notebooks/rdkit_cling.ipynb /notebooks/rdkit_cling.ipynb
+
 # start jupyter notebook server
-CMD ["/config/fireitup.sh"]
+CMD jupyter notebook --ip=0.0.0.0 --port=9999 --NotebookApp.token='' --NotebookApp.password='' --allow-root --notebook-dir='/notebooks'
