@@ -1,5 +1,6 @@
 # C++ RDKit Jupyter notebook example
 
+https://chembl.blogspot.com/2019/01/rdkit-c-and-jupyter-notebook.html
 
 - Clone the repo and build the image.
 
