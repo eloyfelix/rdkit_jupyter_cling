@@ -1,13 +1,10 @@
-FROM continuumio/miniconda3
+FROM mambaorg/micromamba:0.11.3
 
 # use the environment.yml to create the conda env
-COPY config/environment.yml /tmp/environment.yml
+COPY environment.yml /root/environment.yml
 
-# create the conda env using saved environment file
-RUN conda env create -n cling -f /tmp/environment.yml
-
-# Make RUN commands use the new environment:
-SHELL ["conda", "run", "-n", "cling", "/bin/bash", "-c"]
+RUN micromamba install -y -n base -f /root/environment.yml && \
+    micromamba clean --all --yes
 
 # use the notebook
 COPY notebooks/rdkit_cling.ipynb /notebooks/rdkit_cling.ipynb
